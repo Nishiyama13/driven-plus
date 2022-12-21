@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
 import logo from "../../assets/logo.png";
+import { func } from "prop-types";
 
 //navigate("/home");
 
@@ -16,7 +17,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
 
     const { setToken } = useContext(AuthContext);
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     function login(e) {
         e.preventDefault();
@@ -32,11 +33,18 @@ export default function LoginPage() {
                 name: res.data.name,
                 cpf: res.data.cpf,
                 email: res.data.email,
+                membership: res.data.membership
             });
             setToken(res.data.token);
-            alert("usuario econectado!")
+            alert("usuario conectado!")
+            conferirDadosDoUser()
         });
         promise.catch(err => alert(err.response.data.message));
+    }
+
+    function conferirDadosDoUser() {
+        console.log(user)
+        console.log(user.name)
     }
 
     return (

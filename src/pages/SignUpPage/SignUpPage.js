@@ -16,6 +16,7 @@ export default function SingUpPage() {
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [password, setPassword] = useState("");
+    const [membership, setMemberchip] = useState({});
     const navigate = useNavigate();
 
     function createAccount(e) {

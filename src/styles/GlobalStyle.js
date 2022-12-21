@@ -29,8 +29,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    background-color:${backgroundColor}
+    background:${backgroundColor};
     font-family: 'Roboto', sans-serif;
+    padding-top:135px;
 }
 ol, ul {
 	list-style: none;
@@ -53,7 +54,7 @@ table {
 	border: 1px solid #D5D5D5;
 
 	height: 45px;
-	width: 400px;
+	width: 300px;
 	border-radius: 5px;
 	
 	margin-bottom: 6px;

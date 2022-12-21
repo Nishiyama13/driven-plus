@@ -1,5 +1,5 @@
 import styled from "styled-components";
-//import { secondColor } from "../../constants/colors"
+import { mainColor } from "../../constants/colors"
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -8,11 +8,6 @@ export const LoginContainer = styled.div`
   justify-content: center;
   padding-top: 70px;
 
-  .img {
-    padding-bottom: 30px;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 export const FormContainer = styled.div`
@@ -23,17 +18,19 @@ export const FormContainer = styled.div`
 
   button {
     height: 45px;
-    width: 300px;
+    width: 100%;
     border-radius: 5px;
 
     border-style: none;
-    font-family: "Lexend Deca";
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 14 24px;
     color: #ffff;
+    background: ${mainColor};
+    margin-top: 14px;
+    margin-bottom: 24px;
   }
 `;

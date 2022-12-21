@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mainColor } from "../../constants/colors"
 
 export const ContainerSignUp = styled.div`
   display: flex;
@@ -6,21 +7,25 @@ export const ContainerSignUp = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 70px;
+  
 `;
 
 export const Button = styled.button`
   height: 45px;
-  width: 300px;
+  width: 100%;
   border-radius: 5px;
 
   border-style: none;
-  font-family: "Lexend Deca";
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
+  margin-top: 14px;
+  margin-bottom: 24px;
   background-color: #52b6ff;
   color: #ffff;
+  background: ${mainColor};
+
+
 `;
