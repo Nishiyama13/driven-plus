@@ -1,17 +1,17 @@
 import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
-import { Link } from "react-router-dom";//useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { LoginContainer, FormContainer } from "./styled";
 import { useContext, useState } from "react";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
 import logo from "../../assets/logo.png";
-import { func } from "prop-types";
 
-//navigate("/home");
+
+
 
 export default function LoginPage() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -38,6 +38,7 @@ export default function LoginPage() {
             setToken(res.data.token);
             alert("usuario conectado!")
             conferirDadosDoUser()
+
         });
         promise.catch(err => alert(err.response.data.message));
     }
@@ -45,6 +46,7 @@ export default function LoginPage() {
     function conferirDadosDoUser() {
         console.log(user)
         console.log(user.name)
+        navigate("/home");
     }
 
     return (
