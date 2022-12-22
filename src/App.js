@@ -1,21 +1,23 @@
-import AuthContext from "./contexts/AuthContext"
-import UserContext from "./contexts/UserContext"
-import { useState } from "react"
+import AuthContext from "./contexts/AuthContext";
+import UserContext from "./contexts/UserContext";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignUpPage from "./pages/SignUpPage/SignUpPage"
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import HomePage from "./pages/HomePage/HomePage"
+import HomePage from "./pages/HomePage/HomePage";
 import PlansPage from "./pages/PlansPage/PlansPage";
 import PlanPage from "./pages/PlanPage/PlanPage";
 
-
 export default function App() {
-  const [token, setToken] = useState("")
-  const [user, setUser] = useState({})
+  const [token, setToken] = useState("");
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("token", JSON.stringify(token));
+  }, [token]);
 
   return (
-
-    < AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider value={{ token, setToken }}>
       <UserContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
           <Routes>
@@ -26,9 +28,7 @@ export default function App() {
             <Route path="/subscriptions/id" element={<PlanPage />} />
           </Routes>
         </BrowserRouter>
-
       </UserContext.Provider>
-    </AuthContext.Provider >
+    </AuthContext.Provider>
   );
 }
-
