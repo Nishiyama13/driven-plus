@@ -10,11 +10,15 @@ import PlanPage from "./pages/PlanPage/PlanPage";
 
 export default function App() {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
   }, [token]);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>

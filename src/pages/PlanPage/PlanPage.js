@@ -1,6 +1,6 @@
-//import AuthContext from "../../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //listar um plano específico, GET cabeçalho Authorization no formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
@@ -60,13 +60,29 @@ import { useNavigate } from "react-router-dom";
 }*/
 
 export default function PlanPage() {
+  const { user, setUser } = useContext(UserContext);
+  const { setToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    const tokenDes = JSON.parse(localStorage.getItem("token"));
+    if (tokenDes) {
+      setToken(tokenDes);
+    }
+  }, []);
+
+  useEffect(() => {
+    const userDes = JSON.parse(localStorage.getItem("user"));
+    if (userDes) {
+      setUser(userDes);
+    }
+  }, []);
+
   const navigate = useNavigate();
 
   function goToHome() {
     navigate("/home");
   }
 
-  const { user } = useContext(UserContext);
   return (
     <>
       <h1>PlanPage do(a): {user.name}</h1>

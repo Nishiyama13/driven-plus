@@ -1,6 +1,6 @@
-//import AuthContext from "../../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Listar planos: GET com um cabeçalho Authorization com formato Bearer TOKEN
@@ -17,12 +17,28 @@ import { useNavigate } from "react-router-dom";
 */
 
 export default function PlansPage() {
+  const { user, setUser } = useContext(UserContext);
+  const { setToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    const tokenDes = JSON.parse(localStorage.getItem("token"));
+    if (tokenDes) {
+      setToken(tokenDes);
+    }
+  }, []);
+
+  useEffect(() => {
+    const userDes = JSON.parse(localStorage.getItem("user"));
+    if (userDes) {
+      setUser(userDes);
+    }
+  }, []);
+
   const navigate = useNavigate();
   function goToPlan() {
     navigate("/subscriptions/id");
   }
 
-  const { user } = useContext(UserContext);
   return (
     <>
       <h1>PlansPage do(a): {user.name}</h1>

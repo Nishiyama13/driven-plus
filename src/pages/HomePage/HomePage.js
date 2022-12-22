@@ -5,13 +5,20 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
-  const { setToken } = useContext(AuthContext);
+  const { user, setUser } = useContext(UserContext);
+  const { token, setToken } = useContext(AuthContext);
 
   useEffect(() => {
-    const tokenDeserial = JSON.parse(localStorage.getItem("token"));
-    if (tokenDeserial) {
-      setToken(tokenDeserial);
+    const tokenDes = JSON.parse(localStorage.getItem("token"));
+    if (tokenDes) {
+      setToken(tokenDes);
+    }
+  }, []);
+
+  useEffect(() => {
+    const userDes = JSON.parse(localStorage.getItem("user"));
+    if (userDes) {
+      setUser(userDes);
     }
   }, []);
 
@@ -21,6 +28,7 @@ export default function HomePage() {
   return (
     <>
       <h1>HomePage do(a): {user.name}</h1>
+      <h1>HomePage token: {token}</h1>
       <button onClick={goToPlans}>Go to PlansPage</button>
     </>
   );
