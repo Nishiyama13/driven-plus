@@ -42,7 +42,7 @@ export default function PlansPage() {
 
       const promise = axios.get(url, config);
       promise.then(res => {
-        console.log(res);
+        //console.log(res);
         setPlans(res.data);
       });
       promise.catch(err => console.log(err.response.data));
@@ -55,9 +55,8 @@ export default function PlansPage() {
       setUser(userDes);
     }
   }, []);
-
+  //console.log(plans);
   function goToPlan() {
-    //console.log(plans);
     navigate("/subscriptions/id");
   }
 
@@ -67,7 +66,7 @@ export default function PlansPage() {
       <p>PlansPage do(a): {user.name}</p>
 
       {plans.map(p => (
-        <Plan key={p.id} image={p.image} price={p.price} />
+        <Plan key={p.id} id={p.id} image={p.image} price={p.price} />
       ))}
 
       <button onClick={goToPlan}>Plan</button>

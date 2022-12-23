@@ -35,7 +35,7 @@ export default function App() {
               <Route path="/sign-up" element={<SignUpPage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/subscriptions" element={<PlansPage />} />
-              <Route path="/subscriptions/id" element={<PlanPage />} />
+              <Route path="/subscriptions/:idPlan" element={<PlanPage />} />
             </Routes>
           </BrowserRouter>
         </PlanContext.Provider>

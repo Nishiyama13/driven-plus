@@ -1,13 +1,28 @@
 import styled from "styled-components";
 import { textColor } from "../constants/colors";
+// https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
+import { Link } from "react-router-dom"; //useParams
+
+//import PlanContext from "../../contexts/PlanContext";
+//import { useContext } from "react";
 
 export default function Plan(props) {
   const { id, image, price } = props;
+  console.log(id, image, price);
+  //const { setPlan } = useContext(PlanContext);
+
+  // useEffect(() => {
+  //   const planDes = JSON.parse(localStorage.getItem("plan"));
+  //   if (planDes) {
+  //     setUser(planDes);
+  //   }
+  // }, []);
+
   function choosePlan() {
     alert(id);
   }
   return (
-    <ContainerPlan onClick={choosePlan}>
+    <ContainerPlan onClick={choosePlan} to={`/subscriptions/${id}`}>
       <img src={image} alt="Logo driven" />
       <Price>
         <span>R$</span> {price}
@@ -16,7 +31,7 @@ export default function Plan(props) {
   );
 }
 
-const ContainerPlan = styled.div`
+const ContainerPlan = styled(Link)`
   display: flex;
   width: 80%;
 
