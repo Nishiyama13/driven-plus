@@ -1,8 +1,9 @@
 import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
+import PlanContext from "../../contexts/PlanContext";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContainer, FormContainer } from "./styled";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
 import logo from "../../assets/logo.png";
@@ -15,6 +16,7 @@ export default function LoginPage() {
 
   const { setToken } = useContext(AuthContext);
   const { user, setUser } = useContext(UserContext);
+  const { plan, setPlan } = useContext(PlanContext);
 
   function login(e) {
     e.preventDefault();
@@ -33,7 +35,9 @@ export default function LoginPage() {
         membership: res.data.membership,
       });
       setToken(res.data.token);
+      setPlan(res.data.membership);
       alert("usuario conectado!");
+
       conferirDadosDoUser();
     });
     promise.catch(err => alert(err.response.data.message));
@@ -42,7 +46,13 @@ export default function LoginPage() {
   function conferirDadosDoUser() {
     console.log(user);
     console.log(user.name);
-    navigate("/home");
+    console.log(plan);
+
+    if (plan === "") {
+      navigate("/subscriptions");
+    } else {
+      navigate("/home");
+    }
   }
 
   return (
