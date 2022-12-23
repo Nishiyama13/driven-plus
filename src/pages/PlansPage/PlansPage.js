@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
+import Plan from "../../components/Plan";
+import { ContainerPlans } from "./styled";
+
 //Listar planos: GET com um cabeçalho Authorization com formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships
 /*resposta
@@ -20,8 +23,9 @@ import { BASE_URL } from "../../constants/urls";
 
 export default function PlansPage() {
   const { user, setUser } = useContext(UserContext);
-  const { token, setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const [plans, setPlans] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
@@ -52,16 +56,21 @@ export default function PlansPage() {
     }
   }, []);
 
-  const navigate = useNavigate();
   function goToPlan() {
-    console.log(plans);
+    //console.log(plans);
     navigate("/subscriptions/id");
   }
 
   return (
-    <>
-      <h1>PlansPage do(a): {user.name}</h1>
+    <ContainerPlans>
+      <h1>Escolha seu Plano</h1>
+      <p>PlansPage do(a): {user.name}</p>
+
+      {plans.map(p => (
+        <Plan key={p.id} image={p.image} price={p.price} />
+      ))}
+
       <button onClick={goToPlan}>Plan</button>
-    </>
+    </ContainerPlans>
   );
 }

@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import { mainColor } from "../../constants/colors"
+import { mainColor } from "../../constants/colors";
 
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 70px;
-
+  padding-top: 135px;
+  form {
+    margin-top: 100px;
+  }
 `;
 
 export const FormContainer = styled.div`

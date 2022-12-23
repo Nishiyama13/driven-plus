@@ -1,13 +1,17 @@
 import styled from "styled-components";
-import { mainColor } from "../../constants/colors"
+import { mainColor } from "../../constants/colors";
 
 export const ContainerSignUp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 70px;
-  
+
+  padding-top: 135px;
+
+  form {
+    margin-top: 100px;
+  }
 `;
 
 export const Button = styled.button`
@@ -26,6 +30,4 @@ export const Button = styled.button`
   background-color: #52b6ff;
   color: #ffff;
   background: ${mainColor};
-
-
 `;

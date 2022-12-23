@@ -31,7 +31,7 @@ body {
     line-height: 1;
     background:${backgroundColor};
     font-family: 'Roboto', sans-serif;
-    padding-top:135px;
+ 
 }
 ol, ul {
 	list-style: none;
