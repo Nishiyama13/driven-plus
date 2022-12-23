@@ -22,11 +22,11 @@ export default function LoginPage() {
     e.preventDefault();
     const url = `${BASE_URL}/auth/login`;
     const body = { email, password };
-    console.log(body);
+    console.log(body); //estrutura a enviar
 
     const promise = axios.post(url, body);
     promise.then(res => {
-      console.log(res);
+      console.log(res); //resposta
       setUser({
         id: res.data.id,
         name: res.data.name,
@@ -44,9 +44,9 @@ export default function LoginPage() {
   }
 
   function conferirDadosDoUser() {
-    console.log(user);
-    console.log(user.name);
-    console.log(plan);
+    //console.log(user);
+    //console.log(user.name);
+    //console.log(plan);
 
     if (plan === "") {
       navigate("/subscriptions");

@@ -1,7 +1,9 @@
 import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 //Listar planos: GET com um cabeçalho Authorization com formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships
@@ -18,12 +20,28 @@ import { useNavigate } from "react-router-dom";
 
 export default function PlansPage() {
   const { user, setUser } = useContext(UserContext);
-  const { setToken } = useContext(AuthContext);
+  const { token, setToken } = useContext(AuthContext);
+  const [plans, setPlans] = useState([]);
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
     if (tokenDes) {
       setToken(tokenDes);
+
+      const url = `${BASE_URL}/subscriptions/memberships`;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${tokenDes}`,
+        },
+      };
+
+      const promise = axios.get(url, config);
+      promise.then(res => {
+        console.log(res);
+        setPlans(res.data);
+      });
+      promise.catch(err => console.log(err.response.data));
     }
   }, []);
 
@@ -36,6 +54,7 @@ export default function PlansPage() {
 
   const navigate = useNavigate();
   function goToPlan() {
+    console.log(plans);
     navigate("/subscriptions/id");
   }
 
