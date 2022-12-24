@@ -3,7 +3,7 @@ import { mainColor, textColor } from "../../constants/colors";
 
 export const ContainerBuy = styled.div`
   width: 100%;
-  background-color: blue;
+  //background-color: blue;
   color: ${textColor};
   display: flex;
   flex-direction: column;

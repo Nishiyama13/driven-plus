@@ -74,6 +74,8 @@ export default function PlanPage() {
 
   const [planData, setPlanData] = useState(undefined);
   const [perks, setPerks] = useState([]);
+  const [membershipId, setMembershipId] = useState("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
@@ -96,6 +98,8 @@ export default function PlanPage() {
         // const planChooseData = { ...res.data };
         // console.log(planChooseData);
         setPerks(res.data.perks);
+        setMembershipId(idPlan);
+        setPrice(res.data.price);
       });
       promise.catch(err => console.log(err.response.data));
     }
@@ -131,7 +135,11 @@ export default function PlanPage() {
           <span>R$ </span>
           {planData.price} <span>cobrados mensalmente</span>
         </p>
-        <BuyForm />
+        <BuyForm
+          membershipId={membershipId}
+          price={planData.price}
+          planName={planData.name}
+        />
       </div>
       <button onClick={goToHome}>Home</button>
     </ContainerBuy>

@@ -4,6 +4,7 @@ import { BASE_URL } from "../constants/urls";
 import axios from "axios";
 import styled from "styled-components";
 import { mainColor } from "../constants/colors";
+import { Modal, Button } from "react-bootstrap";
 
 //import styled from "styled-components";
 //body
@@ -14,35 +15,23 @@ import { mainColor } from "../constants/colors";
 //   securityNumber: 123,
 //   expirationDate: "01/28"
 // }
-export default function BuyForm() {
-  const [membershipId, setMembershipId] = useState("");
+export default function BuyForm(props) {
+  const { membershipId, price, planName } = props;
+
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [securityNumber, setSecurityNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [formattingTip, setFormattingTip] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  // console.log(membershipId);
 
   function ConfirmPurchase(e) {
     e.preventDefault();
-    const urlBuy = `${BASE_URL}/subscriptions`;
-    //const body = { email, name, cpf, password };
-    const body = {
-      membershipId,
-      cardName,
-      cardNumber,
-      securityNumber,
-      expirationDate,
-    };
-    console.log(urlBuy);
-    console.log(body);
 
-    // const promise = axios.post(urlBuy, body);
-    // promise.then(res => {
-    //   alert("Compra Realizada");
-    //   navigate("/home");
-    // });
-    // promise.catch(err => console.log(err.response.data));
+    alert("colocar pagina de confirmacao");
+    setShowModal(true);
   }
 
   const handleKeyPress = event => {
@@ -75,6 +64,30 @@ export default function BuyForm() {
 
     setCardNumber(event.target.value);
   };
+
+  function handleConfirmPurchase() {
+    //get
+    const urlBuy = `${BASE_URL}/subscriptions`;
+    //const body = { email, name, cpf, password };
+    const body = {
+      membershipId,
+      cardName,
+      cardNumber,
+      securityNumber,
+      expirationDate,
+    };
+    console.log(urlBuy);
+    console.log(body);
+
+    const promise = axios.post(urlBuy, body);
+    promise.then(res => {
+      alert("Compra Realizada");
+      navigate("/home");
+    });
+    promise.catch(err => console.log(err.response.data));
+
+    setShowModal(false);
+  }
 
   return (
     <CardForm onSubmit={ConfirmPurchase}>
@@ -121,6 +134,25 @@ export default function BuyForm() {
         <StyledDialog open={formattingTip}>mm/yy</StyledDialog>
       </MiniInput>
       <ButtonSign type="submit">Assinar</ButtonSign>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar compra</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h1>
+            Tem certeza que deseja assinar o plano {planName} (R$ {price}?)
+          </h1>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleConfirmPurchase}>
+            Nāo
+          </Button>
+          <Button variant="primary" onClick={handleConfirmPurchase}>
+            Sim
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </CardForm>
   );
 }
