@@ -2,21 +2,20 @@ import styled from "styled-components";
 import { textColor } from "../constants/colors";
 // https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
 import { Link } from "react-router-dom"; //useParams
-
-//import PlanContext from "../../contexts/PlanContext";
-//import { useContext } from "react";
+import PlanContext from "../contexts/PlanContext";
+import { useContext, useEffect } from "react";
 
 export default function Plan(props) {
   const { id, image, price } = props;
   console.log(id, image, price);
-  //const { setPlan } = useContext(PlanContext);
+  const { setPlan } = useContext(PlanContext);
 
-  // useEffect(() => {
-  //   const planDes = JSON.parse(localStorage.getItem("plan"));
-  //   if (planDes) {
-  //     setUser(planDes);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const planDes = JSON.parse(localStorage.getItem("plan"));
+    if (planDes) {
+      setPlan(planDes);
+    }
+  }, []);
 
   function choosePlan() {
     alert(id);
