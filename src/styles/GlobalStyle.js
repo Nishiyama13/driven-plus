@@ -33,7 +33,7 @@ body {
     font-family: 'Roboto', sans-serif;
  
 }
-ol, ul {
+ ul {
 	list-style: none;
 }
 blockquote, q {

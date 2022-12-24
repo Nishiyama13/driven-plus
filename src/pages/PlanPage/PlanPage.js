@@ -4,6 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
+import { ContainerBuy } from "./styled";
+import PlanDescription from "../../components/PlanDescription";
+import BuyForm from "../../components/BuyForm";
 
 //listar um plano específico, GET cabeçalho Authorization no formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
@@ -70,6 +73,7 @@ export default function PlanPage() {
   const { idPlan } = useParams();
 
   const [planData, setPlanData] = useState(undefined);
+  const [perks, setPerks] = useState([]);
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
@@ -91,6 +95,7 @@ export default function PlanPage() {
         setPlanData(res.data);
         // const planChooseData = { ...res.data };
         // console.log(planChooseData);
+        setPerks(res.data.perks);
       });
       promise.catch(err => console.log(err.response.data));
     }
@@ -112,9 +117,23 @@ export default function PlanPage() {
   }
 
   return (
-    <>
-      <h1>PlanPage do(a): {user.name}</h1>
+    <ContainerBuy>
+      <img src={planData.image} alt={planData.name} />
+      <h1>{planData.name}</h1>
+      <div>
+        <h2>Benefícios:</h2>
+
+        {perks.map(p => (
+          <PlanDescription key={p.id} id={p.id} title={p.title} link={p.link} />
+        ))}
+        <h2>Preço:</h2>
+        <p>
+          <span>R$ </span>
+          {planData.price} <span>cobrados mensalmente</span>
+        </p>
+        <BuyForm />
+      </div>
       <button onClick={goToHome}>Home</button>
-    </>
+    </ContainerBuy>
   );
 }
