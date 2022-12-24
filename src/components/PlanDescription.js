@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { textColor } from "../constants/colors";
 
 export default function PlanDescription(props) {
-  const { key, id, title, link } = props;
+  const { title, link } = props; //key, id,
   return (
     <Item>
       <a href={link}>{title}</a>

@@ -1,7 +1,7 @@
 import AuthContext from "../../contexts/AuthContext";
 import UserContext from "../../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
@@ -24,8 +24,8 @@ import { ContainerPlans } from "./styled";
 export default function PlansPage() {
   const { user, setUser } = useContext(UserContext);
   const { setToken } = useContext(AuthContext);
-  const [plans, setPlans] = useState([]);
-  const navigate = useNavigate();
+  const [plans, setPlans] = useState(undefined);
+  //const navigate = useNavigate();
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
@@ -56,20 +56,17 @@ export default function PlansPage() {
     }
   }, []);
   //console.log(plans);
-  function goToPlan() {
-    navigate("/subscriptions/id");
+  if (plans === undefined) {
+    return <div>Carregando...</div>;
   }
 
   return (
     <ContainerPlans>
       <h1>Escolha seu Plano</h1>
-      <p>PlansPage do(a): {user.name}</p>
 
       {plans.map(p => (
         <Plan key={p.id} id={p.id} image={p.image} price={p.price} />
       ))}
-
-      <button onClick={goToPlan}>Plan</button>
     </ContainerPlans>
   );
 }
