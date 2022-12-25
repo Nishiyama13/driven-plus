@@ -1,4 +1,5 @@
-import { useState } from "react";
+import PlanContext from "../contexts/PlanContext";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants/urls";
 import axios from "axios";
@@ -17,6 +18,7 @@ import { Modal, Button } from "react-bootstrap";
 // }
 export default function BuyForm(props) {
   const { membershipId, price, planName } = props;
+  const { plan, setPlan } = useContext(PlanContext);
 
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -66,9 +68,8 @@ export default function BuyForm(props) {
   };
 
   function handleConfirmPurchase() {
-    //get
+    const tokenDes = JSON.parse(localStorage.getItem("token"));
     const urlBuy = `${BASE_URL}/subscriptions`;
-    //const body = { email, name, cpf, password };
     const body = {
       membershipId,
       cardName,
@@ -79,10 +80,19 @@ export default function BuyForm(props) {
     console.log(urlBuy);
     console.log(body);
 
-    const promise = axios.post(urlBuy, body);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tokenDes}`,
+      },
+    };
+
+    const promise = axios.post(urlBuy, body, config);
     promise.then(res => {
-      alert("Compra Realizada");
+      console.log(res.data);
+
       navigate("/home");
+      setPlan(res.data);
+      alert("Compra Realizada");
     });
     promise.catch(err => console.log(err.response.data));
 

@@ -38,21 +38,13 @@ export default function LoginPage() {
       setPlan(res.data.membership);
       alert("usuario conectado!");
 
-      conferirDadosDoUser();
+      if (res.data.membership === null) {
+        navigate("/subscriptions");
+      } else {
+        navigate("/home");
+      }
     });
     promise.catch(err => alert(err.response.data.message));
-  }
-
-  function conferirDadosDoUser() {
-    //console.log(user);
-    //console.log(user.name);
-    //console.log(plan);
-
-    if (plan === "") {
-      navigate("/subscriptions");
-    } else {
-      navigate("/home");
-    }
   }
 
   return (
