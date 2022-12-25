@@ -6,6 +6,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { mainColor } from "../constants/colors";
 import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 //import styled from "styled-components";
 //body
@@ -27,6 +28,7 @@ export default function BuyForm(props) {
   const [formattingTip, setFormattingTip] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+
   // console.log(membershipId);
 
   function ConfirmPurchase(e) {
@@ -145,9 +147,16 @@ export default function BuyForm(props) {
       </MiniInput>
       <ButtonSign type="submit">Assinar</ButtonSign>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmar compra</Modal.Title>
+      <ContainerModal
+        centered
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      >
+        <Modal.Header>
+          <Link to="/subscriptions">
+            <Button variant="link">Voltar</Button>
+          </Link>
+          <button onClick={() => setShowModal(false)}>X</button>
         </Modal.Header>
         <Modal.Body>
           <h1>
@@ -155,14 +164,14 @@ export default function BuyForm(props) {
           </h1>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleConfirmPurchase}>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
             Nāo
           </Button>
           <Button variant="primary" onClick={handleConfirmPurchase}>
             Sim
           </Button>
         </Modal.Footer>
-      </Modal>
+      </ContainerModal>
     </CardForm>
   );
 }
@@ -212,4 +221,22 @@ const StyledDialog = styled.dialog`
   margin-top: 60px;
   margin-right: 60px;
   border-radius: 5px;
+`;
+const ContainerModal = styled(Modal)`
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  .modal-content {
+    height: 210px;
+    width: 248px;
+
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+  }
 `;
