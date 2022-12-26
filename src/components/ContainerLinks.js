@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { mainColor, textColor } from "../constants/colors";
 export default function ContainerLinks(props) {
-  const { title, link } = props; //key, id,
+  const { title, link } = props;
   return (
     <Item>
-      <a href={link}>{title}</a>
+      <a onClick={() => window.open(link, "_blank")}>{title}</a>
     </Item>
   );
 }

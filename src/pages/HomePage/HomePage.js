@@ -4,7 +4,15 @@ import PlanContext from "../../contexts/PlanContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContainerLinks from "../../components/ContainerLinks";
-import { ContainerHome } from "./styled";
+import {
+  ContainerHome,
+  Header,
+  PlanImg,
+  Footer,
+  CancelButton,
+  ChangePlanButton,
+} from "./styled";
+import userImgBase from "../../assets/userImgBase.png";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -38,19 +46,24 @@ export default function HomePage() {
   function goToPlans() {
     navigate("/subscriptions");
   }
+  function cancelPlan() {
+    alert("Fazer logica de cancelamento");
+  }
+
   return (
     <ContainerHome>
-      <header>
-        <img src={plan.image} alt={plan.name} />
-        <img src={user.image} alt="" />
-      </header>
+      <Header>
+        <img src={userImgBase} alt="" />
+      </Header>
+      <PlanImg src={plan.image} alt={plan.name} />
       <h1>Olá, {user.name}</h1>
       {perksPlanChoose.map(p => (
         <ContainerLinks key={p.id} id={p.id} title={p.title} link={p.link} />
       ))}
-      <button onClick={goToPlans}>Mudar Plano</button>
+      <Footer>
+        <ChangePlanButton onClick={goToPlans}>Mudar Plano</ChangePlanButton>
+        <CancelButton onClick={cancelPlan}>Cancelar Plano</CancelButton>
+      </Footer>
     </ContainerHome>
   );
 }
-
-//
