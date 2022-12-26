@@ -1,15 +1,24 @@
 import styled from "styled-components";
-import { mainColor, textColor } from "../../constants/colors";
+import { textColor } from "../../constants/colors";
 
 export const ContainerBuy = styled.div`
   width: 100%;
-  //background-color: blue;
   color: ${textColor};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 70px;
+
+  header {
+    position: fixed;
+    top: 25px;
+    left: 22px;
+
+    img {
+      width: 28px;
+    }
+  }
 
   img {
     width: 140px;

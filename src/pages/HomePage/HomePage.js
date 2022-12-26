@@ -78,7 +78,7 @@ export default function HomePage() {
   return (
     <ContainerHome>
       <Header>
-        <img src={userImgBase} alt="" />
+        <img src={userImgBase} alt="imagem do usuario" />
       </Header>
       <PlanImg src={plan.image} alt={plan.name} />
       <h1>Olá, {user.name}</h1>

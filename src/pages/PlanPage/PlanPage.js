@@ -7,6 +7,8 @@ import axios from "axios";
 import { ContainerBuy } from "./styled";
 import PlanDescription from "../../components/PlanDescription";
 import BuyForm from "../../components/BuyForm";
+import { Link } from "react-router-dom";
+import arrow from "../../assets/arrow.png";
 
 //listar um plano específico, GET cabeçalho Authorization no formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
@@ -122,6 +124,11 @@ export default function PlanPage() {
 
   return (
     <ContainerBuy>
+      <header>
+        <Link to="/subscriptions">
+          <img src={arrow} alt="voltar" />
+        </Link>
+      </header>
       <img src={planData.image} alt={planData.name} />
       <h1>{planData.name}</h1>
       <div>

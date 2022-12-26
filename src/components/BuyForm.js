@@ -6,7 +6,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { mainColor } from "../constants/colors";
 import { Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 //import styled from "styled-components";
 //body
@@ -152,12 +151,9 @@ export default function BuyForm(props) {
         show={showModal}
         onHide={() => setShowModal(false)}
       >
-        <Modal.Header>
-          <Link to="/subscriptions">
-            <Button variant="link">Voltar</Button>
-          </Link>
+        <ModalHeader>
           <button onClick={() => setShowModal(false)}>X</button>
-        </Modal.Header>
+        </ModalHeader>
         <Modal.Body>
           <h1>
             Tem certeza que deseja assinar o plano {planName} (R$ {price}?)
@@ -224,7 +220,6 @@ const StyledDialog = styled.dialog`
   border-radius: 5px;
 `;
 const ContainerModal = styled(Modal)`
-  font-family: Roboto;
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;
@@ -242,5 +237,14 @@ const ContainerModal = styled(Modal)`
     margin: auto;
     padding: 20px;
     border-radius: 12px;
+  }
+`;
+
+const ModalHeader = styled(Modal.Header)`
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  button {
+    font-weight: 700;
   }
 `;

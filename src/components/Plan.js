@@ -44,6 +44,7 @@ const ContainerPlan = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 `;
 
 const Price = styled.div`
