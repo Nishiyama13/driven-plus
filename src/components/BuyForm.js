@@ -177,6 +177,7 @@ export default function BuyForm(props) {
 }
 
 const CardForm = styled.form`
+  margin-top: 34px;
   input {
     font-size: 14px;
     font-weight: 400;
@@ -229,6 +230,9 @@ const ContainerModal = styled(Modal)`
   line-height: 21px;
   letter-spacing: 0em;
   text-align: center;
+  position: fixed;
+  top: 230px;
+  left: 13%;
 
   .modal-content {
     height: 210px;

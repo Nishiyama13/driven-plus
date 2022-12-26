@@ -28,6 +28,8 @@ export const ContainerBuy = styled.div`
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
+    margin-top: 12px;
+    margin-bottom: 5px;
   }
   p {
     font-size: 14px;

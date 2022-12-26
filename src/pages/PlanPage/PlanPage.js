@@ -141,7 +141,6 @@ export default function PlanPage() {
           planName={planData.name}
         />
       </div>
-      <button onClick={goToHome}>Home</button>
     </ContainerBuy>
   );
 }
