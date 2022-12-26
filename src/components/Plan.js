@@ -17,11 +17,8 @@ export default function Plan(props) {
     }
   }, []);
 
-  function choosePlan() {
-    alert(id);
-  }
   return (
-    <ContainerPlan onClick={choosePlan} to={`/subscriptions/${id}`}>
+    <ContainerPlan to={`/subscriptions/${id}`}>
       <img src={image} alt="Logo driven" />
       <Price>
         <span>R$</span> {price}

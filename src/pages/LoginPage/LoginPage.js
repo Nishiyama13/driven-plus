@@ -36,7 +36,7 @@ export default function LoginPage() {
       });
       setToken(res.data.token);
       setPlan(res.data.membership);
-      alert("usuario conectado!");
+      //  alert("usuario conectado!");
 
       if (res.data.membership === null) {
         navigate("/subscriptions");

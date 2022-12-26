@@ -32,8 +32,7 @@ export default function BuyForm(props) {
 
   function ConfirmPurchase(e) {
     e.preventDefault();
-
-    alert("colocar pagina de confirmacao");
+    //  alert("colocar pagina de confirmacao");
     setShowModal(true);
   }
 

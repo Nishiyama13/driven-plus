@@ -260,7 +260,6 @@ function BuyForm(props) {
 
   function ConfirmPurchase(e) {
     e.preventDefault();
-    alert("colocar pagina de confirmacao");
     setShowModal(true);
   }
   const handleKeyPress = event => {
@@ -1340,7 +1339,7 @@ function LoginPage() {
       });
       setToken(res.data.token);
       setPlan(res.data.membership);
-      alert("usuario conectado!");
+      //alert("usuario conectado!");
       if (res.data.membership === null) {
         navigate("/subscriptions");
       } else {

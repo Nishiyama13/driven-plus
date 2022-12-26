@@ -27,7 +27,7 @@ export default function SingUpPage() {
 
     const promise = axios.post(URL, body);
     promise.then(res => {
-      alert("Cadastro Realizado");
+      // alert("Cadastro Realizado");
       navigate("/");
     });
     promise.catch(err => console.log(err.response.data));

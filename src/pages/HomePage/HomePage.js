@@ -14,9 +14,6 @@ import {
   ChangePlanButton,
 } from "./styled";
 import userImgBase from "../../assets/userImgBase.png";
-import prancheta from "../../assets/prancheta.png";
-import money from "../../assets/money.png";
-
 import axios from "axios";
 
 export default function HomePage() {
@@ -57,7 +54,6 @@ export default function HomePage() {
   }
 
   function cancelPlan() {
-    alert("Fazer logica de cancelamento");
     const urlCancelPlan = `${BASE_URL}/subscriptions`;
     console.log(urlCancelPlan);
 
