@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants/urls";
 import axios from "axios";
 import styled from "styled-components";
-import { mainColor } from "../constants/colors";
+import { mainColor, textColor } from "../constants/colors";
 import { Modal, Button } from "react-bootstrap";
 
 //import styled from "styled-components";
@@ -159,15 +159,16 @@ export default function BuyForm(props) {
             Tem certeza que deseja assinar o plano {planName} (R$ {price}?)
           </h1>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+        <ModalFooter>
+          <NoButton variant="secondary" onClick={() => setShowModal(false)}>
             Nāo
-          </Button>
-          <Button variant="primary" onClick={handleConfirmPurchase}>
+          </NoButton>
+          <YesButton variant="primary" onClick={handleConfirmPurchase}>
             Sim
-          </Button>
-        </Modal.Footer>
+          </YesButton>
+        </ModalFooter>
       </ContainerModal>
+      {showModal && <Backdrop />}
     </CardForm>
   );
 }
@@ -227,12 +228,10 @@ const ContainerModal = styled(Modal)`
   text-align: center;
   position: fixed;
   top: 230px;
-  left: 13%;
-
+  left: 16%;
+  height: 210px;
+  width: 248px;
   .modal-content {
-    height: 210px;
-    width: 248px;
-
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -247,4 +246,35 @@ const ModalHeader = styled(Modal.Header)`
   button {
     font-weight: 700;
   }
+`;
+
+const ModalFooter = styled(Modal.Footer)`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 47px;
+  button {
+    height: 52px;
+    width: 95px;
+    border-radius: 8px;
+    color: ${textColor};
+    border: none;
+  }
+`;
+
+const NoButton = styled.button`
+  background-color #CECECE;
+`;
+
+const YesButton = styled.button`
+  background-color: ${mainColor};
+`;
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 0;
+  opacity: 0.5;
 `;

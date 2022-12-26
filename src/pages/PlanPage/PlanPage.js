@@ -4,11 +4,13 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
-import { ContainerBuy } from "./styled";
+import { ContainerBuy, ContainerInfo } from "./styled";
 import PlanDescription from "../../components/PlanDescription";
 import BuyForm from "../../components/BuyForm";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/arrow.png";
+import prancheta from "../../assets/prancheta.png";
+import money from "../../assets/money.png";
 
 //listar um plano específico, GET cabeçalho Authorization no formato Bearer TOKEN
 //https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/ID_DO_PLANO
@@ -131,13 +133,15 @@ export default function PlanPage() {
       </header>
       <img src={planData.image} alt={planData.name} />
       <h1>{planData.name}</h1>
-      <div>
-        <h2>Benefícios:</h2>
+      <ContainerInfo>
+        <img src={prancheta} alt="icone prancheta" />
+        <span>Benefícios:</span>
 
         {perks.map(p => (
           <PlanDescription key={p.id} id={p.id} title={p.title} link={p.link} />
         ))}
-        <h2>Preço:</h2>
+        <img src={money} alt="icone nota" />
+        <span>Preço:</span>
         <p>
           <span>R$ </span>
           {planData.price} <span>cobrados mensalmente</span>
@@ -147,7 +151,7 @@ export default function PlanPage() {
           price={planData.price}
           planName={planData.name}
         />
-      </div>
+      </ContainerInfo>
     </ContainerBuy>
   );
 }

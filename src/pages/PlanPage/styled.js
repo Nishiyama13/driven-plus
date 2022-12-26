@@ -31,15 +31,6 @@ export const ContainerBuy = styled.div`
     letter-spacing: 0em;
     text-align: left;
   }
-  h2 {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 12px;
-    margin-bottom: 5px;
-  }
   p {
     font-size: 14px;
     font-weight: 400;
@@ -48,3 +39,21 @@ export const ContainerBuy = styled.div`
     text-align: left;
   }
 `;
+
+export const ContainerInfo = styled.div`
+  img {
+    width: 15px;
+    margin-top: 12px;
+    margin-right: 5px;
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+`;
+// margin-top: 12px;
+// margin-bottom: 5px;
