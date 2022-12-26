@@ -59,6 +59,11 @@ export const Footer = styled.div`
     border: none;
     color: ${textColor};
     margin-bottom: 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0em;
   }
 `;
 
