@@ -21,7 +21,7 @@ export default function HomePage() {
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(AuthContext);
   const { plan, setPlan } = useContext(PlanContext);
-  const [perksPlanChoose, serPerksPlanChoose] = useState([]);
+  const [perksPlanChoose, serPerksPlanChoose] = useState(undefined);
 
   useEffect(() => {
     const tokenDes = JSON.parse(localStorage.getItem("token"));
@@ -44,6 +44,10 @@ export default function HomePage() {
       serPerksPlanChoose(planDes.perks);
     }
   }, []);
+
+  if (perksPlanChoose === undefined) {
+    return <div>Carregando...</div>;
+  }
 
   function goToPlans() {
     navigate("/subscriptions");

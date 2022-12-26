@@ -93,7 +93,7 @@ export default function BuyForm(props) {
       console.log(res.data);
 
       navigate("/home");
-      setPlan(res.data);
+      setPlan(res.data.membership);
       alert("Compra Realizada");
     });
     promise.catch(err => console.log(err.response.data));
