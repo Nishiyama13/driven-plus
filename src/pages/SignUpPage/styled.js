@@ -27,7 +27,6 @@ export const Button = styled.button`
   text-align: center;
   margin-top: 14px;
   margin-bottom: 24px;
-  background-color: #52b6ff;
   color: #ffff;
   background: ${mainColor};
 `;

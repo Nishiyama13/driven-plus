@@ -68,7 +68,7 @@ export default function HomePage() {
       console.log(res.data);
 
       setPlan(res.data);
-      alert("Cancelamento Realizado");
+      //alert("Cancelamento Realizado");
       navigate("/subscriptions");
     });
     promise.catch(err => console.log(err.response.data));
